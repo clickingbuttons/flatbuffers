@@ -39,14 +39,10 @@ pub fn build(b: *std.Build) void {
         "src/flatc_main.cpp",
         "src/binary_annotator.cpp",
         "src/annotated_binary_text_gen.cpp",
-        "src/bfbs_gen_lua.cpp",
-        "src/bfbs_gen_nim.cpp",
     }, &cpp_flags);
 
-    for ([_][]const u8{
-        "include",
-        "flatbuffers/include",
-    }) |include_path| flatc.addIncludePath(include_path);
+    const includes = [_][]const u8{ "include", "flatbuffers/include" };
+    for (includes) |include_path| flatc.addIncludePath(include_path);
 
     flatc.linkLibCpp();
     b.installArtifact(flatc);
