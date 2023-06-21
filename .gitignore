@@ -153,3 +153,5 @@ cmake-build-debug/
 _deps/
 **/.gradle/**
 kotlin/**/generated
+zig-cache
+zig-out
