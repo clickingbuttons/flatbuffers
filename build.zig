@@ -33,6 +33,8 @@ pub fn build(b: *std.Build) void {
         "src/idl_parser.cpp",
         "src/idl_gen_binary.cpp",
         "src/idl_gen_text.cpp",
+        "src/idl_gen_cpp.cpp",
+        "src/code_generators.cpp",
         "src/reflection.cpp",
         "src/util.cpp",
         "src/flatc.cpp",

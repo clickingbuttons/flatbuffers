@@ -22,6 +22,7 @@
 #include "flatbuffers/flatc.h"
 #include "flatbuffers/util.h"
 #include "idl_gen_binary.h"
+#include "idl_gen_cpp.h"
 
 static const char *g_program_name = nullptr;
 
@@ -68,6 +69,11 @@ int main(int argc, const char *argv[]) {
           "b", "binary", "",
           "Generate wire format binaries for any data definitions" },
       flatbuffers::NewBinaryCodeGenerator());
+
+  flatc.RegisterCodeGenerator(
+      flatbuffers::FlatCOption{ "c", "cpp", "",
+                                "Generate C++ headers for tables/structs" },
+      flatbuffers::NewCppCodeGenerator());
 
   // Create the FlatC options by parsing the command line arguments.
   const flatbuffers::FlatCOptions &options =
