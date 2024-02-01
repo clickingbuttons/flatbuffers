@@ -8,4 +8,3 @@ binary for use in [flatbuffers-zig](https://github.com/clickingbuttons/flatbuffe
 
 Should ideally emit a library, but there's no upstream API. Could add one upstream or make one here
 downstream.
-
