@@ -29,22 +29,25 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    flatc.addCSourceFiles(&.{
-        "src/idl_parser.cpp",
-        "src/idl_gen_binary.cpp",
-        "src/idl_gen_text.cpp",
-        "src/idl_gen_cpp.cpp",
-        "src/code_generators.cpp",
-        "src/reflection.cpp",
-        "src/util.cpp",
-        "src/flatc.cpp",
-        "src/flatc_main.cpp",
-        "src/binary_annotator.cpp",
-        "src/annotated_binary_text_gen.cpp",
-    }, &cpp_flags);
+    flatc.addCSourceFiles(.{
+        .files = &.{
+            "src/idl_parser.cpp",
+            "src/idl_gen_binary.cpp",
+            "src/idl_gen_text.cpp",
+            "src/idl_gen_cpp.cpp",
+            "src/code_generators.cpp",
+            "src/reflection.cpp",
+            "src/util.cpp",
+            "src/flatc.cpp",
+            "src/flatc_main.cpp",
+            "src/binary_annotator.cpp",
+            "src/annotated_binary_text_gen.cpp",
+        },
+        .flags = &cpp_flags,
+    });
 
     const includes = [_][]const u8{ "include", "flatbuffers/include" };
-    for (includes) |include_path| flatc.addIncludePath(.{ .path = include_path });
+    for (includes) |include_path| flatc.addIncludePath(b.path(include_path));
 
     flatc.linkLibCpp();
     b.installArtifact(flatc);
